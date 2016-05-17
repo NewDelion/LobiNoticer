@@ -18,7 +18,7 @@ namespace LobiNoticer
         {
             InitializeComponent();
 
-            setting = new Setting();
+            
 
             toolStripMenuItem1.Click += MenuClick_Status;
             toolStripMenuItem2.Click += MenuClick_Setting;
@@ -41,6 +41,7 @@ namespace LobiNoticer
         
         private void ShowSetting()
         {
+            setting = new Setting();
             // ウィンドウ表示&最前面に持ってくる
             if (setting.WindowState == System.Windows.WindowState.Minimized)
                 setting.WindowState = System.Windows.WindowState.Normal;
@@ -66,7 +67,7 @@ namespace LobiNoticer
         {
             if (toolStripMenuItem1.Text == "開始")
             {
-                if (setting.WindowState == WindowState.Normal)
+                if (setting != null && setting.WindowState == WindowState.Normal)
                 {
                     MessageBox.Show("設定ウィンドウを閉じてください。", "メッセージ");
                     return;
@@ -112,17 +113,32 @@ namespace LobiNoticer
         {
             dispatcherTimer.Stop();
 
-            LobiAPI.Json.Notification[] notificataion = api.GetNotifications().notifications;
-            for(int i = notificataion.Length - 1; i >= 0; i--)
-            {
-                if (long.Parse(notificataion[i].id) > last_id)
+            try {
+                LobiAPI.Json.Notification[] notificataion = api.GetNotifications().notifications;
+                for (int i = notificataion.Length - 1; i >= 0; i--)
                 {
-                    lock (lockObj)
+                    if (long.Parse(notificataion[i].id) > last_id)
                     {
-                        notification_queue.Enqueue(notificataion[i]);
+                        lock (lockObj)
+                        {
+                            notification_queue.Enqueue(notificataion[i]);
+                        }
+                        last_id = long.Parse(notificataion[i].id);
                     }
-                    last_id = long.Parse(notificataion[i].id);
                 }
+            }
+            catch(Exception ex)
+            {
+                try
+                {
+                    api.Login(Properties.Settings.Default.mail, Properties.Settings.Default.password);
+                }
+                catch(Exception exx)
+                {
+                    MessageBox.Show("致命的なエラー...\nアプリケーションを終了します。");
+                    System.Windows.Application.Current.Shutdown();
+                }
+                
             }
             if (!toolStripMenuItem2.Enabled)
                 dispatcherTimer.Start();
@@ -135,7 +151,7 @@ namespace LobiNoticer
                 if (notification_queue.Count == 0)
                     return;
                 LobiAPI.Json.Notification notification = notification_queue.Dequeue();
-                notifyIcon1.ShowBalloonTip(3000, notification.title.template.Replace("{{p1}}", notification.title.items[0].label), notification.message, System.Windows.Forms.ToolTipIcon.None);
+                notifyIcon1.ShowBalloonTip(3000, notification.title.template.Replace("{{p1}}", notification.title.items[0].label), notification.message == "" ? " " : notification.message, System.Windows.Forms.ToolTipIcon.None);
             }
         }
     }
