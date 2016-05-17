@@ -67,7 +67,7 @@ namespace LobiNoticer
         {
             if (toolStripMenuItem1.Text == "開始")
             {
-                if (setting != null && setting.WindowState == WindowState.Normal)
+                if (setting != null && setting.IsVisible)
                 {
                     MessageBox.Show("設定ウィンドウを閉じてください。", "メッセージ");
                     return;
