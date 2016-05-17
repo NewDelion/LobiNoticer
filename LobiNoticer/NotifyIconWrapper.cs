@@ -151,7 +151,21 @@ namespace LobiNoticer
                 if (notification_queue.Count == 0)
                     return;
                 LobiAPI.Json.Notification notification = notification_queue.Dequeue();
-                notifyIcon1.ShowBalloonTip(3000, notification.title.template.Replace("{{p1}}", notification.title.items[0].label), notification.message == "" ? " " : notification.message, System.Windows.Forms.ToolTipIcon.None);
+                try {//一応tryで囲んどく。たぶん治ったけど
+                    string title = notification.title.template;
+                    for (int i = 0; i < notification.title.items.Length; i++)
+                    {
+                        if (notification.title.template.IndexOf("{{p" + (i + 1).ToString() + "}}") != -1)
+                        {
+                            title = notification.title.template.Replace("{{p" + (i + 1).ToString() + "}}", notification.title.items[i].label);
+                        }
+                    }
+                    notifyIcon1.ShowBalloonTip(3000, title, notification.message == "" ? " " : notification.message, System.Windows.Forms.ToolTipIcon.None);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("エラーが発生しました。開発者に知らせてください。");
+                }
             }
         }
     }

@@ -69,9 +69,9 @@ namespace LobiNoticer
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
+            /*e.Cancel = true;
             WindowState = WindowState.Minimized;
-            ShowInTaskbar = false;
+            ShowInTaskbar = false;*/
             
         }
 
