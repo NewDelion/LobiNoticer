@@ -4,7 +4,7 @@ PCで作業しているときにLobiの通知をスマホで確認するのが�
 
 インストーラは下のURLをクリックでダウンロード
 
-https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_201605172319.zip
+https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_201605191241.zip
 
 ダウンロードしたら解凍して中に入ってるsetup.exeを実行する。
 
