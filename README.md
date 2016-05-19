@@ -6,6 +6,8 @@ PCで作業しているときにLobiの通知をスマホで確認するのが�
 
 https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_201605191241.zip
 
+## インストール
+
 ダウンロードしたら解凍して中に入ってるsetup.exeを実行する。
 
 インストールが終わるとLobiNoticerが起動する。
@@ -13,6 +15,12 @@ https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_2016051912
 右下のタスクトレイを確認してみてくれ。
 
 アイコンを右クリックするとメニューが表示される。
+
+## アップデート
+
+最初にインストーラを解凍した場所に、新しいインストーラを解凍してインストール
+
+または、古いLobiNoticerをアンインストールしてインストールする
 
 ## メールアドレスとパスワードを入力したら盗まれるんじゃないかって？
 
