@@ -4,7 +4,7 @@ PCで作業しているときにLobiの通知をスマホで確認するのが�
 
 インストーラは下のURLをクリックでダウンロード
 
-https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_201605172234.zip
+https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_201605172319.zip
 
 ダウンロードしたら解凍して中に入ってるsetup.exeを実行する。
 
@@ -13,3 +13,9 @@ https://github.com/NewDelion/LobiNoticer/raw/master/Setup_LobiNoticer_2016051722
 右下のタスクトレイを確認してみてくれ。
 
 アイコンを右クリックするとメニューが表示される。
+
+## メールアドレスとパスワードを入力したら盗まれるんじゃないかって？
+
+そう思われそうだと考えたからソースを公開してるんです…
+
+うpしてるインストーラからインストールするのが嫌ならVisualStudio2015を使ってソースからインストーラを作ってね…
