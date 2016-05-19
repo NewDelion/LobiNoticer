@@ -11,5 +11,8 @@
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="auth_type" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lobi</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

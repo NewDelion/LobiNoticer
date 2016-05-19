@@ -26,9 +26,33 @@ namespace LobiNoticer
             this.comboBox.SelectedIndex = IndexFromValue(Properties.Settings.Default.interval);
             this.textBox.Text = Properties.Settings.Default.mail;
             this.textBox1.Text = Properties.Settings.Default.password;
+            this.comboBox1.SelectedIndex = AuthIndexFromValue(Properties.Settings.Default.auth_type);
             this.Icon = Imaging.CreateBitmapSourceFromHIcon(Properties.Resources.lobi2.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
-        
+
+        private int AuthIndexFromValue(string auth_type)
+        {
+            if (auth_type == "lobi")
+                return 0;
+            else if (auth_type == "twitter")
+                return 1;
+            return 0;
+        }
+
+        private string AuthValueFromIndex(int index)
+        {
+            switch (index)
+            {
+                case -1:
+                    return "lobi";
+                case 0:
+                    return "lobi";
+                case 1:
+                    return "twitter";
+            }
+            return "lobi";
+        }
+
         private int IndexFromValue(int interval)
         {
             switch (interval)
@@ -77,10 +101,11 @@ namespace LobiNoticer
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (ValueFromIndex(this.comboBox.SelectedIndex) != Properties.Settings.Default.interval || !this.textBox.Text.Equals(Properties.Settings.Default.mail) || !this.textBox1.Text.Equals(Properties.Settings.Default.password))
+            if (AuthValueFromIndex(this.comboBox1.SelectedIndex) != Properties.Settings.Default.auth_type || ValueFromIndex(this.comboBox.SelectedIndex) != Properties.Settings.Default.interval || !this.textBox.Text.Equals(Properties.Settings.Default.mail) || !this.textBox1.Text.Equals(Properties.Settings.Default.password))
             {
                 Properties.Settings.Default.mail = this.textBox.Text;
                 Properties.Settings.Default.password = this.textBox1.Text;
+                Properties.Settings.Default.auth_type = AuthValueFromIndex(this.comboBox1.SelectedIndex);
                 Properties.Settings.Default.interval = ValueFromIndex(this.comboBox.SelectedIndex);
                 Properties.Settings.Default.Save();
             }

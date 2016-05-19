@@ -74,14 +74,29 @@ namespace LobiNoticer
                 }
 
                 api = new BasicAPI();
-                if (!api.Login(Properties.Settings.Default.mail, Properties.Settings.Default.password))
+                if (Properties.Settings.Default.auth_type == "lobi")
                 {
-                    MessageBox.Show("ログインに失敗しました。\nメールアドレスとパスワードを設定から確認してください。", "ログイン失敗");
-                    return;
+                    if (!api.Login(Properties.Settings.Default.mail, Properties.Settings.Default.password))
+                    {
+                        MessageBox.Show("ログインに失敗しました。\nメールアドレスとパスワードを設定から確認してください。", "ログイン失敗");
+                        return;
+                    }
+                    else
+                    {
+                        this.last_id = long.Parse(api.GetNotifications().notifications[0].id);
+                    }
                 }
-                else
+                else if (Properties.Settings.Default.auth_type == "twitter")
                 {
-                    this.last_id = long.Parse(api.GetNotifications().notifications[0].id);
+                    if (!api.TwitterLogin(Properties.Settings.Default.mail, Properties.Settings.Default.password))
+                    {
+                        MessageBox.Show("ログインに失敗しました。\nメールアドレスとパスワードを設定から確認してください。", "ログイン失敗");
+                        return;
+                    }
+                    else
+                    {
+                        this.last_id = long.Parse(api.GetNotifications().notifications[0].id);
+                    }
                 }
 
                 toolStripMenuItem1.Text = "停止";
@@ -131,7 +146,10 @@ namespace LobiNoticer
             {
                 try
                 {
-                    api.Login(Properties.Settings.Default.mail, Properties.Settings.Default.password);
+                    if (Properties.Settings.Default.auth_type == "lobi")
+                        api.Login(Properties.Settings.Default.mail, Properties.Settings.Default.password);
+                    else if (Properties.Settings.Default.auth_type == "twitter")
+                        api.TwitterLogin(Properties.Settings.Default.mail, Properties.Settings.Default.password);
                 }
                 catch(Exception exx)
                 {

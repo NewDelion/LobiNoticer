@@ -5,23 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LobiNoticer"
         mc:Ignorable="d"
-        Title="設定" Height="170" Width="280"
+        Title="設定" Height="200" Width="280"
         ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
-        <Label x:Name="label" Content="新着通知をチェックする時間間隔" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,83,0,0"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Margin="182,83,0,0" SelectedIndex="2">
+        <Label x:Name="label" Content="新着通知をチェックする時間間隔" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,109,0,0"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="64" Margin="182,109,0,0" SelectedIndex="2">
             <ComboBoxItem Content="1秒" />
             <ComboBoxItem Content="3秒"/>
             <ComboBoxItem Content="5秒"/>
             <ComboBoxItem Content="10秒"/>
             <ComboBoxItem Content="30秒"/>
         </ComboBox>
-        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="142,110,0,0" FontFamily="Consolas" Click="button_Click"/>
-        <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="201,110,0,0" FontFamily="Consolas" Click="button_Copy_Click"/>
+        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="142,136,0,0" FontFamily="Consolas" Click="button_Click"/>
+        <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="201,136,0,0" FontFamily="Consolas" Click="button_Copy_Click"/>
         <Label x:Name="label1" Content="メール" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <Label x:Name="label2" Content="パスワード" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,41,0,0"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="176" Margin="70,14,0,0"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="176" Margin="70,45,0,0"/>
+        <Label x:Name="label2_Copy" Content="認証タイプ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,72,0,0"/>
+        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="70,74,0,0" VerticalAlignment="Top" Width="67" SelectedIndex="0">
+            <ComboBoxItem Content="Lobi"/>
+            <ComboBoxItem Content="Twitter"/>
+        </ComboBox>
 
     </Grid>
 </Window>

@@ -58,5 +58,17 @@ namespace LobiNoticer.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("lobi")]
+        public string auth_type {
+            get {
+                return ((string)(this["auth_type"]));
+            }
+            set {
+                this["auth_type"] = value;
+            }
+        }
     }
 }
